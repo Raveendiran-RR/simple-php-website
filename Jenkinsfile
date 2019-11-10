@@ -27,9 +27,9 @@ node
             // if the remove container command fails, tweek the shell out put as success to continue the execution
             sh 'sudo docker rm -f php-server || true'
             //build the latest image
-            sh 'sudo docker build . -t ravi/proj-php:${BUILD_NUMBER}'
+            sh 'sudo docker build . -t ravi/proj-php:v${BUILD_NUMBER}'
             //start the container 
-            sh 'sudo docker run -itd -p 80:80 --name php-server ravi/proj-php:${BUILD_NUMBER}'       
+            sh 'sudo docker run -itd -p 80:80 --name php-server ravi/proj-php:v${BUILD_NUMBER}'       
             
         }
  
