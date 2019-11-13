@@ -68,7 +68,7 @@ Pipeline
             {
                 echo '===========Testing============'
                 // This command will display the contents of the about us page.
-                sh 'java -jar Selenium_test.jar'
+                sh 'java -jar Final_test.jar'
                 test_output = sh 'java -jar Selenium_test.jar'
                 if(test_output=="PASS")
                 {
