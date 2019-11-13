@@ -2,9 +2,12 @@
 
 // Author : Raveendiran RR
 // Script to deploy a simple PHP website pipeline
-// 1.  Download the source code from GIT Repo
-// 2.  If the php-server container exists, delete it 
-// 3.  Create the container with the latest source code 
+// 1. Download Config from GIt repo - master node
+// 2. Update the slave machine with docker and Open JDK - From master node using Ansible
+// 3. Download the Simple-PHP-Website code - Slave Node / Test Server
+// 4. Deploy it on docker container named php-server and create image with build number as tag
+// 5. Run the test using the Final_test.jar file
+// 6. if the test result is a failure delete the container and image that was created
 
 import java.net.URL
 
