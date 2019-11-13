@@ -9,17 +9,43 @@
 import java.net.URL
 
 
-node
+node ('master')
 {
     try
     {
-        stage('Download form GIT Repo')
+        stage('Download configuration files (Playbook, groovy script) from git repo - Master server')
         {
-            echo '==========GitDownload=========='
-            //download the repo
+            echo'===========Download config from Git repo============='            
+            git -b config 'https://github.com/Raveendiran-RR/simple-php-website.git'
+        }
+        stage('Run Ansible playbook install docker on test server')
+        {
+            echo 'install docker on test server'
+            sh 'ansible-playbook '
+        }
+    }
+    catch exception(err):
+    {
+        echo '****** Error ********'
+        echo '${err}'
+    }
+    finally
+    {
+        echo 'script on master completed'
+    }
+
+}
+
+node ('slave')
+{
+    try
+    {
+        stage ('Download PHP-Website files from git repo - Test Server')
+        {
+            echo'======Download PHP-Website files========'
             git 'https://github.com/Raveendiran-RR/simple-php-website.git'
         }
-
+        
         stage('Build / deploy stage ')
         {
             echo '===============Build Image and Deploy================='
@@ -29,28 +55,37 @@ node
             //build the latest image
             sh 'sudo docker build . -t ravi/proj-php:v${BUILD_NUMBER} '
             //start the container 
-            sh 'sudo docker run -itd -p 80:80 --name php-server ravi/proj-php:v${BUILD_NUMBER}'       
-            
+            sh 'sudo docker run -itd -p 80:80 --name php-server ravi/proj-php:v${BUILD_NUMBER}'               
         }
+        
         stage ('Test about page')
         {
             echo '===========Testing============'
             // This command will display the contents of the about us page.
             sh 'java -jar Selenium_test.jar'
-            //TODO : if the output starts with <something> then upload the image with the build number ${BUILD_NUMBER} 
-            //TODO : remove the container after testing
-            //TODO : if the output does not start with <something> then remove the image and conatiner
+            test_output = sh 'java -jar Selenium_test.jar'
+            if(test_output=="PASS")
+            {
+                echo ' code updated successfully'
+            }
+            else
+            {
+                echo 'code has errors. Deleting the image ravi/proj-php:v${BUILD_NUMBER} and running images'
+                sudo docker rm -f php-server || true
+                sudo docker rmi -f ravi/proj-php:v${BUILD_NUMBER}
+            }
+            
         }
-        
- 
+
+
     }
-    catch (Exception err)
+    catch exception(err):
     {
-        echo "******Error_found****** "
+        echo '****** Error ********'
         echo "${err}"
     }
     finally
     {
-        echo 'Script execution completed'
+        echo 'script on slave completed'
     }
 }
