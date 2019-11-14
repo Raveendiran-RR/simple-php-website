@@ -64,9 +64,9 @@ node ('slave')
             {
                 echo '===========Testing============'
                 test_output = sh (script: 'java -jar Final_test.jar ', , returnStdout:true).trim()
-                if(test_output=="PASS")
+                if(x=="PASS")
                 {
-                    echo 'test passed !!! '
+                    echo 'test Passed yayay !!! '
                 }
                 else
                 {
