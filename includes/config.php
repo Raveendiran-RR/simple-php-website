@@ -13,7 +13,7 @@ function config($key = '')
         'pretty_uri' => true,
         'nav_menu' => [
             '' => 'Home',
-            '?page=about-us' => 'About Us',
+            '?page=about-us' => 'About ME',
             '?page=products' => 'Products',
             '?page=contact' => 'Contact',
         ],
