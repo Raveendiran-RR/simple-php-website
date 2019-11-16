@@ -1,13 +1,13 @@
 # Add or remove the jenkins slave using this python program
 import jenkins 
 
-server = jenkins.Jenkins('http://35.222.8.166/:8080', username='admin', password='697861f3a07c455b8486531a61f7009c')
+server = jenkins.Jenkins('http://<master_jenkins>/:8080', username='admin', password='697f3a07c455b8486531a61f7009c')
 # create node with parameters
 params = {
     'port': '22',            # SSH Port
     'username': 'Jenkins',   # Credential where the private key of the master is stored
     'credentialsId': '2',    # Id of the credential
-    'host': '35.193.93.151'   # using external IP addresss coz trying this from my laptop. Use internal IP address 
+    'host': '<Slave_IP_address>'   # using external IP addresss coz trying this from my laptop. Use internal IP address 
 }
 
 # create a new node with the following parameters

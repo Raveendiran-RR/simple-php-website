@@ -1,5 +1,6 @@
 ---
 # playbook to install docker on the remote host
+# Maintainer : Raveendiran RR
 # references
 #            : http://www.inanzzz.com/index.php/post/lvwk/installing-docker-and-docker-compose-on-remote-server-with-ansible
 #            : https://docs.ansible.com/ansible/latest/modules/apt_module.html
