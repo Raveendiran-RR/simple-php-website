@@ -108,11 +108,13 @@ node('master')
     {
         stage('deploy to production')
         {
-            if(test_result="PASS")
+            if(test_result=="PASS")
             {
                 echo 'deploying the latest image in production'
                 //execute the ansible playbook to deploy the code on production
-                'sh ansible-playbook Deploy-prod-website.yml'                
+                //sh 'ansible-playbook Deploy-prod-website.yml'                
+                sh 'sudo docker rm -f website-prod ||true'
+                sh 'sudo docker run -itd --name website-prod -p 80:80 smartbond/simple-php-website:v${BUILD_NUMBER}'
             }
             else
             {
@@ -122,3 +124,4 @@ node('master')
 
 
     }
+
