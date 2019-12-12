@@ -6,9 +6,9 @@
 Below mentioned is the lab set up for this project
 #### Lab setup
 
-![Lab setup](/images/lab-Setup.png)
+![Lab setup](https://github.com/Raveendiran-RR/simple-php-website/blob/master/images/lab-Setup.PNG)
 
 #### Workflow
- ![Workflow](/images/workflow.png)
+ ![Workflow](https://github.com/Raveendiran-RR/simple-php-website/blob/master/images/workflow.png)
 
 
