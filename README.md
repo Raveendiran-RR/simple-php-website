@@ -1,6 +1,6 @@
 # DevOps Project on CI/CD pipeline 
 ## Simple PHP website using the following tools Github, Jenkins, Docker , Ansible , selinium on Google Cloud
-*This is a devops project to demonstrated the usage of DevOps tools to create a Simple PHP Website (source code for the website is from https://github.com/banago/simple-php-website)*
+*This is a devops project to demonstrate the usage of DevOps tools to create a Simple PHP Website (source code for the website is from https://github.com/banago/simple-php-website)*
 
 
 ## CI/CD pipeline
